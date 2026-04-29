@@ -1,0 +1,666 @@
+.en13830-calculator-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: transparent;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #333;
+}
+
+.calculator-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+}
+
+.calculator-content {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.input-section {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #333;
+}
+
+.diagram-section {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.span-selector {
+    margin-bottom: 25px;
+}
+
+.span-selector h4 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.span-options {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.span-option {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.span-option:hover {
+    border-color: black;
+    background-color: #f0ebeb;
+}
+
+.span-option.active {
+    border-color: black;
+    background-color: #f0ebeb;
+}
+
+.span-option img {
+    max-width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.span-option p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-row label {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-row input[type="number"] {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-row input[type="number"]:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 5px rgba(0,124,186,0.3);
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.toggle-slider {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 24px;
+    transition: background-color 0.3s;
+}
+
+.toggle-slider:before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+input[type="checkbox"]:checked + .toggle-slider {
+    background-color: #4CAF50;
+}
+
+input[type="checkbox"]:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.calculate-btn {
+    background-color: #494a4a;
+    color: white;
+}
+
+.calculate-btn:hover {
+    background-color: #494a4a;
+}
+
+.return-btn, .exit-btn {
+    background-color: #666;
+    color: white;
+}
+
+.return-btn:hover, .exit-btn:hover {
+    background-color: #444;
+}
+
+.result-section {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #333;
+}
+
+.result-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.result-display label {
+    color: #333;
+}
+
+#result-value {
+    color: #d32f2f;
+    font-size: 24px;
+}
+
+.unit {
+    color: #d32f2f;
+    font-size: 18px;
+}
+
+.calculation-details {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.diagram-container {
+    width: 100%;
+    height: 300px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007cba;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: white;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calculator-content {
+        flex-direction: column;
+    }
+    
+    .span-options {
+        flex-direction: column;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+}
+
+/* Additional styles for custom deflection input */
+#custom_deflection_row {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+#custom_deflection_row label {
+    color: #856404;
+    font-weight: bold;
+}
+
+#custom_deflection_row input {
+    border-color: #ffeaa7;
+}
+
+/* Updated button group for single button */
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.calculate-btn {
+    min-width: 150px;
+    padding: 12px 30px;
+    background-color: #494a4a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.calculate-btn:hover {
+    background-color: #494a4a;
+}
+
+/* Diagram image styles */
+.diagram-image {
+    max-width: 100%;
+    width: 100%; /* Make image fill the container */
+    height: auto;
+    max-height: 500px; /* Increase max height */
+    min-height: 300px; /* Set minimum height */
+    object-fit: contain;
+    border: none; /* Remove border */
+    border-radius: 0; /* Remove rounded corners */
+    margin: 0; /* Remove margins */
+    padding: 0; /* Remove padding */
+    box-shadow: none; /* Remove any shadow */
+}
+
+.diagram-title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+.diagram-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Remove padding */
+    background-color: white; /* Remove background */
+    min-height: 600px; /* Increase height */
+}
+
+/* Responsive image handling */
+@media (max-width: 768px) {
+    .diagram-image {
+        max-height: 500px;
+    }
+}
+
+/* Number input styling - consistent width and no spinners */
+.number-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100px; /* Fixed width to fit 99999 comfortably */
+    min-width: 80px;
+    max-width: 100px;
+    font-family: monospace; /* Monospace font for better number alignment */
+    text-align: right; /* Right-align numbers */
+    background-color: white;
+}
+
+.number-input:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 5px rgba(0,124,186,0.3);
+}
+
+/* Remove any spinner buttons that might appear */
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.number-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Update form row to accommodate fixed width inputs */
+.form-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Custom deflection input styling */
+#custom_deflection_row .number-input {
+    border-color: #ffeaa7;
+    background-color: white;
+}
+
+.suggestion-table-wrapper {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    border: 2px solid #333;
+}
+
+/* Profile suggestions table - AUTO-FIT VERSION */
+.suggestion-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    table-layout: fixed;
+}
+
+.suggestion-table th,
+.suggestion-table td {
+    border: 1px solid #ddd;
+    padding: 12px 8px; /* Increased padding */
+    text-align: center;
+    font-size: 13px;
+    vertical-align: middle;
+    height: auto; /* Let height adjust automatically */
+    line-height: 1.2;
+}
+
+.suggestion-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #333;
+    height: 45px; /* Fixed height for header only */
+}
+
+
+.suggestion-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.suggestion-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Profile image styling - LARGER IMAGES */
+.suggestion-table img {
+    width: auto; /* Let width adjust to maintain aspect ratio */
+    height: 60px; /* Increased height */
+    max-width: 100px; /* Maximum width constraint */
+    min-height: 60px; /* Minimum height */
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: white;
+}
+
+/* Ensure the image cell has enough space */
+.suggestion-table th:nth-child(8), /* Preview */
+.suggestion-table td:nth-child(8) {
+    width: 15%; /* Increased width for preview column */
+    padding: 15px 8px; /* Extra padding for image cell */
+    min-height: 80px; /* Minimum height for image cells */
+}
+
+/* Utilization color coding */
+.high-utilization {
+    background-color: #ffebee !important;
+    color: #c62828 !important;
+    font-weight: bold;
+}
+
+.medium-utilization {
+    background-color: #fff3e0 !important;
+    color: #ef6c00 !important;
+    font-weight: bold;
+}
+
+.low-utilization {
+    background-color: #e8f5e8 !important;
+    color: #2e7d32 !important;
+    font-weight: bold;
+}
+
+/* Profile suggestions table - MAIN FIX */
+.suggestion-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    table-layout: fixed; /* Ensures consistent column widths */
+}
+
+.suggestion-table th,
+.suggestion-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 13px;
+    vertical-align: middle; /* Center content vertically */
+    height: 60px; /* Fixed height to accommodate image + padding */
+    line-height: 1.2; /* Better text spacing */
+}
+
+.suggestion-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #333;
+    height: 45px; /* Slightly smaller for header */
+}
+
+.suggestion-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.suggestion-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Profile image styling - KEY FIX */
+.suggestion-table img {
+    width: 60px;
+    height: 40px;
+    object-fit: contain; /* Maintain aspect ratio while fitting */
+    display: block;
+    margin: 0 auto; /* Center the image */
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: white;
+    max-width: 60px;
+    max-height: 40px;
+}
+
+/* Column width control for better layout */
+.suggestion-table th:nth-child(1), /* Profile Code */
+.suggestion-table td:nth-child(1) {
+    width: 15%;
+}
+
+.suggestion-table th:nth-child(2), /* System */
+.suggestion-table td:nth-child(2) {
+    width: 15%;
+}
+
+.suggestion-table th:nth-child(3), /* Width */
+.suggestion-table td:nth-child(3) {
+    width: 10%;
+}
+
+.suggestion-table th:nth-child(4), /* Depth */
+.suggestion-table td:nth-child(4) {
+    width: 10%;
+}
+
+.suggestion-table th:nth-child(5), /* Ix */
+.suggestion-table td:nth-child(5) {
+    width: 12%;
+}
+
+.suggestion-table th:nth-child(6), /* Iy */
+.suggestion-table td:nth-child(6) {
+    width: 12%;
+}
+
+.suggestion-table th:nth-child(7), /* Utilization */
+.suggestion-table td:nth-child(7) {
+    width: 13%;
+}
+
+.suggestion-table th:nth-child(8), /* Preview */
+.suggestion-table td:nth-child(8) {
+    width: 13%;
+    padding: 10px 5px; /* Extra padding for image cell */
+}
+
+/* Profile suggestions section wrapper */
+.suggestion-table-wrapper {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    border: 2px solid #333;
+}
+
+.suggestion-table-wrapper h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .suggestion-table th,
+    .suggestion-table td {
+        font-size: 11px;
+        padding: 6px 4px;
+        height: 50px; /* Smaller height for mobile */
+    }
+    
+    .suggestion-table img {
+        width: 45px;
+        height: 30px;
+        max-width: 45px;
+        max-height: 30px;
+    }
+    
+    .suggestion-table th:nth-child(8),
+    .suggestion-table td:nth-child(8) {
+        padding: 8px 3px;
+    }
+}
+
+/* Additional styling for better visual hierarchy */
+.suggestion-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-table td strong {
+    font-weight: 600;
+}
+
+/* Ensure images don't break the layout */
+.suggestion-table td:nth-child(8) {
+    overflow: hidden; /* Prevent image overflow */
+}
